@@ -68,6 +68,7 @@ class PersonaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    //  Terminar Show
     public function show($id) // Get de un solo index a travez de un ID
     {
         //
@@ -79,6 +80,8 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function edit($id) // Update de un solo index a travez de un ID
     {
         //
@@ -91,7 +94,7 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+    //  Terminar update
     public function update(Request $request, $id) // Update de un solo index a travez de un ID
     {
         //
@@ -103,6 +106,8 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //  Terminar destroy
     public function destroy($id) // Delete de un solo index a travez de un ID
     {
         //
