@@ -29,5 +29,5 @@ Route::resource('products', 'App\Http\Controllers\Product\ProductController', ['
 //Route => grupos para acceso de api TOKEN 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('user', 'App\Http\Controllers\UserController@getAuthenticatedUser');
-    Route::resource('personas', 'App\Http\Controllers\Persona\PersonaController', ['only' => ['index', 'store']]);
+    Route::resource('personas', 'App\Http\Controllers\Persona\PersonaController', ['only' => ['store']]);
 });

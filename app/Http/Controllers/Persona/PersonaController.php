@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Persona;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Persona; // Importo mi modelo persona al controlador PersonaController
+use Illuminate\Support\Facades\Validator;
 
 class PersonaController extends Controller
 {
@@ -26,7 +27,7 @@ class PersonaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function create()//Post de mi contenido Post => Creación 
+    public function create() //Post de mi contenido Post => Creación 
     {
         //
     }
@@ -38,17 +39,26 @@ class PersonaController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)//Post de mi contenido Post => Creación y aquí solo pasamos los argumentos necesarios a guardar
+    public function store(Request $request) //Post de mi contenido Post => Creación y aquí solo pasamos los argumentos necesarios a guardar
     {
         // 'nombre',
         // 'edad',
         // 'apellido',
-        
+
+        $validation = Validator::make($request->all(), [
+            'nombre' => 'required',
+            'edad' => 'required',
+            'apellido' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json($validation->errors()->toJson(), 400);
+        }
+
         $persona = $request->all();
         $savePerson = Persona::create($persona);
 
         return response()->json(['data' => $savePerson], 201);
-        
     }
 
     /**
@@ -57,7 +67,7 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function show($id) // Get de un solo index a travez de un ID
     {
         //
@@ -69,7 +79,7 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)// Update de un solo index a travez de un ID
+    public function edit($id) // Update de un solo index a travez de un ID
     {
         //
     }
@@ -93,7 +103,7 @@ class PersonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)// Delete de un solo index a travez de un ID
+    public function destroy($id) // Delete de un solo index a travez de un ID
     {
         //
     }
