@@ -20,7 +20,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', 'App\Http\Controllers\UserController@register');
 Route::post('login', 'App\Http\Controllers\UserController@authenticate');
+// Route::get('login', 'App\Http\Controllers\UserController@authenticate');
+// Route::update('login', 'App\Http\Controllers\UserController@authenticate');
 
+Route::resource('products', 'App\Http\Controllers\Product\ProductController', ['only' => ['index', 'show', 'store']]);
+
+
+//Route => grupos para acceso de api TOKEN 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::post('user', 'App\Http\Controllers\UserController@getAuthenticatedUser');
+    Route::resource('personas', 'App\Http\Controllers\Persona\PersonaController', ['only' => ['index', 'store']]);
 });
